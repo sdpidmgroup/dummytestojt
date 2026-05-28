@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indomaret Store Master</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins & Impact for Meme -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Impact&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Custom pulsing effect for hotspots */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        .pulse-element::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 9999px;
+            border: 4px solid currentColor;
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        /* Gen Z Impact Meme Font */
+        .meme-text {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            -webkit-text-stroke: 1.5px black;
+            text-shadow: 2px 2px 0px #000;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-gray-800">
+
+    <!-- Header / Navbar -->
+    <header class="bg-blue-600 text-white shadow-md border-b-4 border-yellow-400">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <!-- Mini Logo Placeholder in SVG -->
+                <svg class="w-8 h-8" viewBox="0 0 100 100">
+                    <rect width="100" height="100" rx="15" fill="#00569e"/>
+                    <rect x="10" y="30" width="80" height="40" fill="#ffffff"/>
+                    <rect x="15" y="35" width="70" height="10" fill="#e21c24"/>
+                    <rect x="15" y="47" width="70" height="10" fill="#00569e"/>
+                    <rect x="15" y="59" width="70" height="10" fill="#ffcc00"/>
+                </svg>
+                <div>
+                    <h1 class="text-sm md:text-lg font-extrabold tracking-wide">INDOMARET STORE MASTER</h1>
+                    <p class="text-xs text-yellow-300 font-semibold tracking-wider">LEARNING GAMIFICATION</p>
+                </div>
+            </div>
+            <!-- Audio Controller & Score HUD -->
+            <div class="flex items-center space-x-3">
+                <button id="audio-toggle" class="bg-blue-800 hover:bg-blue-900 text-white p-2 rounded-full shadow transition focus:outline-none focus:ring-2 focus:ring-yellow-400 flex items-center justify-center" title="Mute/Unmute Musik">
+                    <!-- Volume Speaker Icon -->
+                    <svg id="audio-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div id="top-hud" class="hidden text-xs bg-red-600 px-3 py-1.5 rounded-lg border border-red-500 font-bold">
+                    Score: <span id="hud-score" class="text-yellow-300">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 flex flex-col justify-center">
+
+        <!-- STEP 1: LOGIN (GATEWAY) & MISSION BRIEFING -->
+        <section id="step-login" class="bg-white rounded-2xl shadow-xl border-t-8 border-blue-600 overflow-hidden my-4 p-6 md:p-8">
+            <div class="text-center mb-6">
+                <!-- Cover Banner Graphic -->
+                <div class="w-full h-36 bg-blue-100 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden border border-blue-200">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-red-500 opacity-90"></div>
+                    <div class="relative text-white p-4">
+                        <span class="bg-yellow-400 text-blue-900 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Interactive Training</span>
+                        <h2 class="text-2xl md:text-3xl font-extrabold mt-1">INDOMARET STORE MASTER</h2>
+                        <p class="text-xs text-blue-100 mt-1">Uji Kompetensi Operasional & Pengelolaan Toko Retail Hebat!</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-bold text-gray-800">Mulai Petualangan Belajarmu!</h3>
+                <p class="text-sm text-gray-600 mt-1">Masukkan data diri Anda untuk mencatat pencapaian dan memulai evaluasi simulatif.</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="form-login" class="space-y-4 max-w-md mx-auto">
+                <div>
+                    <label for="username" class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" id="username" required class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Masukkan nama Anda">
+                </div>
+                <div>
+                    <label for="nik" class="block text-sm font-semibold text-gray-700 mb-1">Nomor Induk Karyawan (NIK)</label>
+                    <input type="text" id="nik" required class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Contoh: 202610045">
+                </div>
+                <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-950 font-bold py-3 px-6 rounded-xl shadow-md transition-transform transform hover:-translate-y-1 active:translate-y-0 text-center">
+                    MASUK KE BRIEFING &nbsp;➔
+                </button>
+            </form>
+        </section>
+
+        <!-- STEP 2: MISSION BRIEFING -->
+        <section id="step-briefing" class="hidden bg-white rounded-2xl shadow-xl border-t-8 border-yellow-400 overflow-hidden my-4 p-6 md:p-8">
+            <div class="max-w-2xl mx-auto">
+                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Mission Objective</span>
+                <h2 class="text-2xl font-black text-gray-800 mt-2 mb-4">HALO, <span id="player-display-name" class="text-blue-600">CREW</span>! 🫡</h2>
+                
+                <!-- Story Hook (WHY) -->
+                <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl mb-6 text-sm text-gray-700 leading-relaxed">
+                    <p class="font-semibold text-blue-900 mb-1">🤔 Kenapa Anda di Sini?</p>
+                    <p>
+                        Sebuah toko retail modern hanya bisa sukses jika kru di dalamnya memahami standardisasi dengan sempurna. Pelanggan kecewa jika pelayanan tidak ceria, produk kedaluwarsa lolos ke rak, atau administrasi kasir kacau. Apakah Anda memiliki kemampuan untuk menyelesaikan masalah operasional harian dan menyandang gelar legendaris <strong>"Kepala Toko Kuat"</strong>?
+                    </p>
+                </div>
+
+                <!-- Rules and Objectives -->
+                <h3 class="font-bold text-gray-800 mb-2">📋 Peraturan & Petunjuk Permainan:</h3>
+                <ul class="space-y-3 text-sm text-gray-600 mb-6">
+                    <li class="flex items-start">
+                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">1</span>
+                        <span>Anda akan melihat <strong>Denah Toko Indomaret</strong> dengan 3 area bersinar (Hotspots).</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">2</span>
+                        <span>Klik masing-masing hotspot untuk memecahkan total <strong>10 skenario tantangan</strong> di area tersebut.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">3</span>
+                        <span>Setiap jawaban benar akan menyumbang persentase kemajuan dan poin evaluasi.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">4</span>
+                        <span>Kumpulkan semua lencana (Badges) dan buktikan kompetensi terbaik Anda!</span>
+                    </li>
+                </ul>
+
+                <button id="btn-start-game" class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold py-3 px-6 rounded-xl shadow-md transition-transform transform hover:-translate-y-1 active:translate-y-0 text-center uppercase tracking-wider">
+                    SAYA SIAP MEMULAI MISI! 🚀
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 3: GAMEPLAY SCREEN (STORE MAP & CHALLENGES) -->
+        <section id="step-gameplay" class="hidden flex flex-col space-y-6 my-4">
+            
+            <!-- Progress, Badges & Audio Control HUD -->
+            <div class="bg-white p-4 rounded-xl shadow border border-gray-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex-grow">
+                        <div class="flex justify-between text-sm font-bold text-gray-700 mb-1">
+                            <span>Misi Terselesaikan:</span>
+                            <span id="progress-text" class="text-blue-600">0% (0/10 Soal)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 h-4 rounded-full overflow-hidden">
+                            <div id="progress-bar" class="bg-gradient-to-r from-blue-600 to-yellow-400 h-full w-0 transition-all duration-500"></div>
+                        </div>
+                    </div>
+                    <!-- Badges Row -->
+                    <div class="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                        <span class="text-xs font-bold text-gray-500 mr-1">Lencana:</span>
+                        <div class="flex space-x-1" id="badges-container">
+                            <span id="badge-crew" class="opacity-30 grayscale inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-blue-100 text-blue-800" title="Selesaikan 3 soal (Crew Toko)">🛒 Crew</span>
+                            <span id="badge-shift" class="opacity-30 grayscale inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-yellow-100 text-yellow-800" title="Selesaikan 6 soal (Pimpinan Shift)">🔑 Shift Leader</span>
+                            <span id="badge-master" class="opacity-30 grayscale inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-red-100 text-red-800" title="Selesaikan semua soal dengan nilai sempurna!">👑 Store Master</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Store Layout & Challenges Split Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                <!-- Map Left Side (Hotspots) -->
+                <div class="lg:col-span-7 bg-white p-4 rounded-2xl shadow border border-gray-200 flex flex-col items-center">
+                    <h3 class="text-sm font-extrabold text-blue-900 mb-2 uppercase tracking-wide flex items-center">
+                        <span class="inline-block w-2 h-2 bg-red-600 rounded-full mr-2 animate-ping"></span> Denah Interaktif Toko Indomaret
+                    </h3>
+                    <p class="text-xs text-gray-500 mb-4 text-center">Klik pada area berdenyut (hotspot) untuk memulai tantangan!</p>
+                    
+                    <!-- SVG Interactive Top-Down Map -->
+                    <div class="relative w-full aspect-[4/3] bg-gray-100 rounded-xl overflow-hidden border-2 border-gray-300 max-w-lg">
+                        <!-- Minimarket Layout Vector Art -->
+                        <svg viewBox="0 0 400 300" class="w-full h-full select-none">
+                            <!-- Background Floor -->
+                            <rect width="400" height="300" fill="#f8fafc"/>
+                            <!-- Wall Boundaries -->
+                            <rect x="10" y="10" width="380" height="280" fill="none" stroke="#94a3b8" stroke-width="4"/>
+                            
+                            <!-- Entrance -->
+                            <rect x="160" y="285" width="80" height="10" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+                            <text x="200" y="293" font-size="8" font-weight="bold" fill="#475569" text-anchor="middle">PINTU MASUK</text>
+                            
+                            <!-- Area 1: Kasir (Bottom Right) -->
+                            <g>
+                                <rect x="250" y="180" width="120" height="60" fill="#ebf5ff" stroke="#3b82f6" stroke-width="2" rx="5"/>
+                                <rect x="260" y="195" width="80" height="20" fill="#bfdbfe" rx="3"/>
+                                <circle cx="355" cy="205" r="8" fill="#ef4444"/> <!-- Cashier Monitor -->
+                                <text x="310" y="170" font-size="11" font-weight="extrabold" fill="#1e3a8a" text-anchor="middle">MEJA KASIR</text>
+                            </g>
+                            
+                            <!-- Area 2: Lorong Rak Produk (Center & Left) -->
+                            <g>
+                                <!-- Shelf 1 -->
+                                <rect x="30" y="50" width="140" height="40" fill="#fef9c3" stroke="#eab308" stroke-width="2" rx="4"/>
+                                <text x="100" y="75" font-size="10" font-weight="bold" fill="#854d0e" text-anchor="middle">RAK MAKANAN</text>
+                                <!-- Shelf 2 -->
+                                <rect x="30" y="120" width="140" height="40" fill="#fef9c3" stroke="#eab308" stroke-width="2" rx="4"/>
+                                <text x="100" y="145" font-size="10" font-weight="bold" fill="#854d0e" text-anchor="middle">RAK MINUMAN</text>
+                                <!-- Shelf 3 -->
+                                <rect x="30" y="190" width="140" height="40" fill="#fef9c3" stroke="#eab308" stroke-width="2" rx="4"/>
+                                <text x="100" y="215" font-size="10" font-weight="bold" fill="#854d0e" text-anchor="middle">RAK KOSMETIK & OBAT</text>
+                                <text x="100" y="35" font-size="11" font-weight="extrabold" fill="#713f12" text-anchor="middle">LORONG RAK PRODUK</text>
+                            </g>
+                            
+                            <!-- Area 3: Ruang Back Office (Top Right) -->
+                            <g>
+                                <rect x="250" y="30" width="120" height="90" fill="#fee2e2" stroke="#ef4444" stroke-width="2" rx="5"/>
+                                <rect x="270" y="55" width="50" height="30" fill="#fca5a5" rx="3"/>
+                                <circle cx="340" cy="70" r="10" fill="#cbd5e1"/> <!-- Brankas -->
+                                <text x="310" y="24" font-size="11" font-weight="extrabold" fill="#7f1d1d" text-anchor="middle">RUANG BACK OFFICE</text>
+                            </g>
+                        </svg>
+
+                        <!-- HTML Pulsing Buttons placed over the SVG coordinate spots -->
+                        <!-- Hotspot 1: Kasir (x: 250-370, y: 180-240) -->
+                        <button id="hotspot-kasir" class="absolute bottom-[20%] right-[15%] w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center font-bold shadow-lg transform transition hover:scale-110 pulse-element" title="Masuk Area Kasir">
+                            🛒
+                        </button>
+
+                        <!-- Hotspot 2: Rak (x: 30-170, y: 50-230) -->
+                        <button id="hotspot-rak" class="absolute top-[40%] left-[20%] w-10 h-10 bg-yellow-400 hover:bg-yellow-500 text-blue-900 rounded-full flex items-center justify-center font-bold shadow-lg transform transition hover:scale-110 pulse-element" title="Masuk Lorong Rak Produk">
+                            🏷️
+                        </button>
+
+                        <!-- Hotspot 3: Office (x: 250-370, y: 30-120) -->
+                        <button id="hotspot-office" class="absolute top-[20%] right-[15%] w-10 h-10 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center font-bold shadow-lg transform transition hover:scale-110 pulse-element" title="Masuk Ruang Back Office">
+                            🔑
+                        </button>
+                    </div>
+
+                    <!-- Area Status Check -->
+                    <div class="mt-4 w-full grid grid-cols-3 gap-2 text-center text-xs font-semibold">
+                        <div id="status-kasir" class="p-2 rounded bg-gray-100 text-gray-500 border border-gray-200">
+                            Kasir: 0/3
+                        </div>
+                        <div id="status-rak" class="p-2 rounded bg-gray-100 text-gray-500 border border-gray-200">
+                            Rak: 0/3
+                        </div>
+                        <div id="status-office" class="p-2 rounded bg-gray-100 text-gray-500 border border-gray-200">
+                            Office: 0/4
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Challenge Console Right Side -->
+                <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow border border-gray-200 min-h-[380px] flex flex-col justify-between">
+                    <div id="challenge-placeholder" class="text-center py-12">
+                        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                            🗺️
+                        </div>
+                        <h4 class="font-extrabold text-gray-800 text-lg">Pilih Area di Denah</h4>
+                        <p class="text-xs text-gray-500 max-w-xs mx-auto mt-2 leading-relaxed">
+                            Silakan klik salah satu tombol hotspot berdenyut pada denah di sebelah kiri untuk membuka pertanyaan skenario dan menguji kompetensi Anda!
+                        </p>
+                    </div>
+
+                    <!-- Active Challenge Card -->
+                    <div id="challenge-card" class="hidden flex-grow flex flex-col justify-between h-full">
+                        <div>
+                            <!-- Challenge Header -->
+                            <div class="flex justify-between items-center mb-3">
+                                <span id="challenge-area-tag" class="text-xs font-extrabold px-2 py-1 rounded bg-blue-100 text-blue-800 uppercase tracking-widest">KASIR</span>
+                                <span id="challenge-num-tag" class="text-xs font-bold text-gray-500">Pertanyaan 1/3 di Area ini</span>
+                            </div>
+                            
+                            <!-- Scenario Title & Question -->
+                            <div class="mb-4">
+                                <p id="challenge-scenario" class="text-xs text-gray-500 italic mb-2 bg-gray-50 p-2 rounded border-l-2 border-yellow-400">Skenario...</p>
+                                <h4 id="challenge-question" class="text-sm md:text-base font-bold text-gray-800 leading-snug">Detail Pertanyaan?</h4>
+                            </div>
+
+                            <!-- Options Form -->
+                            <div id="options-container" class="space-y-2 mb-4">
+                                <!-- Generated Dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Card Action Footer -->
+                        <div class="pt-4 border-t border-gray-100">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-yellow-600 font-semibold italic flex items-center">
+                                    💡 Petunjuk: Pilih jawaban paling tepat sesuai standar Indomaret!
+                                </span>
+                                <button id="btn-submit-answer" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg text-sm shadow transition">
+                                    KIRIM &nbsp;➔
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feedback Display Overlay -->
+                    <div id="feedback-card" class="hidden flex flex-col justify-between h-full">
+                        <div class="text-center py-6">
+                            <div id="feedback-icon-container" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                                <!-- Icon Dynamic -->
+                            </div>
+                            <h4 id="feedback-title" class="font-extrabold text-xl mb-2">Jawaban Benar!</h4>
+                            <p id="feedback-text" class="text-sm text-gray-600 px-4 leading-relaxed">Penjelasan...</p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 text-center">
+                            <button id="btn-next-challenge" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow transition">
+                                LANJUTKAN MISI &nbsp;➔
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 4: GAME DEBRIEF & SUMMARY RESULT -->
+        <section id="step-debrief" class="hidden bg-white rounded-2xl shadow-xl border-t-8 border-red-600 overflow-hidden my-4 p-6 md:p-8">
+            <div class="text-center max-w-xl mx-auto">
+                <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Misi Selesai</span>
+                <h2 class="text-2xl md:text-3xl font-black text-gray-800 mt-2">HASIL EVALUASI ANDA</h2>
+                
+                <!-- Player & NIK Detail Card -->
+                <div class="my-4 bg-gray-50 border border-gray-200 rounded-xl p-3 text-xs text-gray-600 inline-block text-left">
+                    <p>🧑‍💼 <span class="font-bold">Nama Karyawan:</span> <span id="result-name" class="text-blue-600 font-extrabold">--</span></p>
+                    <p>🆔 <span class="font-bold">Nomor NIK:</span> <span id="result-nik" class="text-blue-600 font-extrabold">--</span></p>
+                </div>
+
+                <!-- Final Score Dial -->
+                <div class="relative w-40 h-40 mx-auto my-6 flex items-center justify-center">
+                    <svg class="w-full h-full transform -rotate-90">
+                        <circle cx="80" cy="80" r="70" fill="transparent" stroke="#e2e8f0" stroke-width="12" />
+                        <circle id="score-circle" cx="80" cy="80" r="70" fill="transparent" stroke="#ef4444" stroke-width="12" stroke-dasharray="440" stroke-dashoffset="440" stroke-linecap="round" class="transition-all duration-1000" />
+                    </svg>
+                    <div class="absolute text-center">
+                        <span id="final-score-text" class="text-3xl md:text-4xl font-black text-gray-800">0</span>
+                        <span class="text-xs block text-gray-500 font-bold">TOTAL SKOR</span>
+                    </div>
+                </div>
+
+                <!-- Gen Z Dynamic Meme Container -->
+                <div id="meme-showcase" class="my-6 max-w-sm mx-auto border-4 border-black bg-yellow-300 rounded-xl overflow-hidden shadow-[6px_6px_0px_rgba(0,0,0,1)] relative flex flex-col">
+                    <!-- Image with safety fallback -->
+                    <div class="relative bg-black w-full aspect-video overflow-hidden">
+                        <img id="meme-image" src="" alt="Meme Evaluasi" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80';">
+                        <div class="absolute bottom-2 left-0 right-0 text-center px-2">
+                            <span id="meme-caption" class="meme-text text-yellow-300 text-2xl md:text-3xl font-black tracking-wide uppercase">MEME TEXT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Positive Reinforcement / Badge Awarded -->
+                <div id="result-badge-card" class="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 mb-6">
+                    <p class="text-xs font-bold text-yellow-600 uppercase tracking-widest">Predikat yang Diraih</p>
+                    <h3 id="result-badge-title" class="text-xl font-extrabold text-blue-900 mt-1">CREW MAGANG</h3>
+                    <p id="result-badge-desc" class="text-xs text-gray-600 mt-2 max-w-sm mx-auto">Masih butuh latihan! Ayo ulangi dan pahami lagi materi standardisasi operasional toko agar performa lebih memuaskan!</p>
+                </div>
+
+                <!-- Call to action buttons -->
+                <div class="space-y-3">
+                    <button id="btn-restart-game" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow transition">
+                        ULANGI PERMAINAN 🔄
+                    </button>
+                    <p class="text-xs text-gray-400">Hasil pengerjaan game ini secara otomatis dievaluasi secara lokal.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-4 text-center text-xs text-gray-500">
+        <p class="font-semibold tracking-wide">Education & Training Dept. © 2026</p>
+    </footer>
+
+    <!-- Game Logic & Web Audio API JS -->
+    <script>
+        // ==========================================
+        // 1. DATA SOAL & SCENARIO (10 Pertanyaan)
+        // ==========================================
+        const questions = [
+            // AREA KASIR (Index 0, 1, 2)
+            {
+                id: 1,
+                area: 'kasir',
+                scenario: 'Di pagi hari yang cerah saat shift dimulai, seorang kasir baru tampak kebingungan di depan mesin kasir.',
+                question: 'Apa langkah awal transaksi wajib yang harus dilakukan oleh kasir sebelum memulai pelayanan penjualan?',
+                options: [
+                    { key: 'A', text: 'Langsung melayani pelanggan yang pertama datang agar tidak mengantre.' },
+                    { key: 'B', text: 'Melakukan serah terima uang modal kerja untuk memastikan kesesuaian fisik kas.' },
+                    { key: 'C', text: 'Melakukan setoran sales harian langsung ke pimpinan shift.' },
+                    { key: 'D', text: 'Membuka LPPTK di komputer kasir.' }
+                ],
+                correct: 'B',
+                feedback: 'Benar! Langkah awal wajib bagi seorang kasir saat mengawali shift adalah serah terima uang modal kerja, lalu dilanjutkan dengan inisial sales.'
+            },
+            {
+                id: 2,
+                area: 'kasir',
+                scenario: 'Seorang pelanggan datang dengan wajah lelah dan membawa beberapa barang belanjaan ke kasir.',
+                question: 'Bagaimana penerapan pilar "P" (Pelayanan) dalam 4 prinsip dasar QSCV yang tulus dan bersahabat?',
+                options: [
+                    { key: 'A', text: 'Melayani tanpa berbicara agar transaksi berlangsung lebih cepat.' },
+                    { key: 'B', text: 'Menyapa dengan senyum ramah, kontak mata, dan bersikap ceria dari hati.' },
+                    { key: 'C', text: 'Menyapa pelanggan dengan nada datar hanya karena tuntutan SOP.' },
+                    { key: 'D', text: 'Hanya fokus memindai produk dengan cepat tanpa memedulikan pelanggan.' }
+                ],
+                correct: 'B',
+                feedback: 'Tepat sekali! Pelayanan yang ceria, tulus, dan bersahabat dari hati merupakan pilar penting pelayanan dalam operasional QSCV.'
+            },
+            {
+                id: 3,
+                area: 'kasir',
+                scenario: 'Pimpinan shift meminta kasir untuk melakukan inisial sales di awal sesi kerja komputer.',
+                question: 'Manakah dari berikut ini yang merupakan urutan proses administrasi transaksi kasir yang benar?',
+                options: [
+                    { key: 'A', text: 'Serah terima uang modal ➔ Inisial sales ➔ Setoran sales' },
+                    { key: 'B', text: 'Setoran sales ➔ Inisial sales ➔ Serah terima uang modal' },
+                    { key: 'C', text: 'Inisial sales ➔ Setoran sales ➔ Serah terima uang modal' },
+                    { key: 'D', text: 'Serah terima uang modal ➔ Setoran sales ➔ Inisial sales' }
+                ],
+                correct: 'A',
+                feedback: 'Luar biasa! Urutan alur transaksi kasir yang benar adalah: (1) Serah terima uang modal kerja, (2) Inisial sales pada sistem komputer kasir, dan (3) Setoran sales di akhir shift.'
+            },
+
+            // AREA LORONG RAK (Index 3, 4, 5)
+            {
+                id: 4,
+                area: 'rak',
+                scenario: 'Saat merapikan produk susu di rak pajang, Anda melihat label harga memiliki tanda batas penjualan berkode "RT".',
+                question: 'Apa arti dari kode batas penjualan "RT" tersebut pada sistem rak Indomaret?',
+                options: [
+                    { key: 'A', text: 'Putus (Produk tidak dapat dikembalikan jika tidak laku).' },
+                    { key: 'B', text: 'Tukar Guling (Produk bisa ditukar langsung ke supplier).' },
+                    { key: 'C', text: 'Retur (Produk dapat dikembalikan jika mendekati kedaluwarsa).' },
+                    { key: 'D', text: 'Expired (Produk sudah harus langsung dimusnahkan).' }
+                ],
+                correct: 'C',
+                feedback: 'Sempurna! Kode "RT" berarti Retur, yang menandakan produk tersebut dapat dikembalikan ke gudang/supplier sesuai ketentuan sebelum kedaluwarsa.'
+            },
+            {
+                id: 5,
+                area: 'rak',
+                scenario: 'Anda sedang melakukan pengecekan kualitas barang menggunakan FEFO (First Expired First Out) pada produk roti.',
+                question: 'Di bawah pilar QSCV manakah kegiatan menjaga kesegaran produk roti agar tidak lolos masa kedaluwarsa berada?',
+                options: [
+                    { key: 'A', text: 'Kebersihan' },
+                    { key: 'B', text: 'Manajemen Kesegaran' },
+                    { key: 'C', text: 'Variasi Produk' },
+                    { key: 'D', text: 'Pelayanan' }
+                ],
+                correct: 'B',
+                feedback: 'Benar! Manajemen Kesegaran bertujuan menyediakan produk yang lebih segar daripada kompetitor, yang dilakukan dengan rotasi FEFO yang ketat oleh crew.'
+            },
+            {
+                id: 6,
+                area: 'rak',
+                scenario: 'Pada label harga tertulis masa kedaluwarsa dengan petunjuk "B" dan batas penanganan "TG".',
+                question: 'Apakah kepanjangan dari istilah penanganan "TG" dan format satuan "B" tersebut?',
+                options: [
+                    { key: 'A', text: 'TG = Tetap Gudang; B = Bulan' },
+                    { key: 'B', text: 'TG = Tukar Guling; B = Bulan' },
+                    { key: 'C', text: 'TG = Tidak Garansi; B = Bulan' },
+                    { key: 'D', text: 'TG = Tambah Grosir; B = Bulan' }
+                ],
+                correct: 'B',
+                feedback: 'Hebat! Kode TG adalah singkatan dari "Tukar Guling" dan kode B adalah representasi dari satuan waktu "Bulan" (H=Hari, M=Minggu, B=Bulan).'
+            },
+
+            // AREA BACK OFFICE (Index 6, 7, 8, 9)
+            {
+                id: 7,
+                area: 'office',
+                scenario: 'Setiap pimpinan shift di Indomaret memiliki porsi tanggung jawab kerja yang berbeda antara administrasi dan fisik barang.',
+                question: 'Berapakah persentase pembagian tugas yang tepat untuk seorang SJL (Shift Job Leader)?',
+                options: [
+                    { key: 'A', text: '50% administrasi, 50% mengurus barang' },
+                    { key: 'B', text: '70% administrasi, 30% mengurus barang' },
+                    { key: 'C', text: '30% administrasi, 70% mengurus barang' },
+                    { key: 'D', text: '20% administrasi, 80% mengurus barang' }
+                ],
+                correct: 'C',
+                feedback: 'Benar! SJL (Shift Job Leader) memiliki fokus kerja 30% mengurus administrasi dan 70% mengurus barang fisik (display, FEFO, retur, atribut promosi, dll).'
+            },
+            {
+                id: 8,
+                area: 'office',
+                scenario: 'Pimpinan shift ingin memonitor nominal penjualan toko harian dan rata-rata pembelian per konsumen.',
+                question: 'Apakah kepanjangan dari istilah performa SPD, STD, dan APC?',
+                options: [
+                    { key: 'A', text: 'SPD = Sales Per Day; STD = Struk Per Day; APC = Average Purchase per Customer' },
+                    { key: 'B', text: 'SPD = Store Per Day; STD = Standard Toko; APC = Average Price Cost' },
+                    { key: 'C', text: 'SPD = Sales Price Data; STD = Struk Total Daily; APC = Annual Promotion Cost' },
+                    { key: 'D', text: 'SPD = System Product Data; STD = Standard Transaction Day; APC = Active Product Code' }
+                ],
+                correct: 'A',
+                feedback: 'Sangat Tepat! SPD adalah nominal penjualan harian, STD adalah jumlah struk/transaksi harian, dan APC adalah rata-rata nominal belanja konsumen (didapatkan dari SPD dibagi STD).'
+            },
+            {
+                id: 9,
+                area: 'office',
+                scenario: 'Sebagai pimpinan shift, Anda harus merapikan dokumen administrasi sesuai dengan periode pelaporannya.',
+                question: 'Manakah di bawah ini yang termasuk dalam laporan administrasi HARIAN pimpinan shift?',
+                options: [
+                    { key: 'A', text: 'Laporan PTW, laporan mingguan, dan returan barang' },
+                    { key: 'B', text: 'Rekapan tutup buku bulanan toko' },
+                    { key: 'C', text: 'Uang sales, uang brankas, inisial shift, point KPI, SPD, STD, dan APC' },
+                    { key: 'D', text: 'Laporan mutasi aset tetap tahunan' }
+                ],
+                correct: 'C',
+                feedback: 'Tepat sekali! Administrasi harian meliputi uang sales, uang brankas, inisial shift, point KPI, penerimaan barang, serta metrik performa (SPD, STD, APC).'
+            },
+            {
+                id: 10,
+                area: 'office',
+                scenario: 'Pimpinan toko yang berkinerja tinggi akan dinilai berdasarkan pencapaian Key Performance Indicators (KPI).',
+                question: 'Apa kriteria yang harus dipenuhi agar seorang pimpinan dapat dinobatkan sebagai "Kepala Toko Kuat"?',
+                options: [
+                    { key: 'A', text: 'Memiliki penjualan harian (SPD) tertinggi selama 1 bulan penuh.' },
+                    { key: 'B', text: 'Mendapatkan hasil poin KPI yang tinggi selama 3 bulan berturut-turut.' },
+                    { key: 'C', text: 'Menghindari retur barang (RT) sama sekali selama 6 bulan.' },
+                    { key: 'D', text: 'Menyelesaikan 100% item tidak terdisplay (ITT) dalam satu shift kerja.' }
+                ],
+                correct: 'B',
+                feedback: 'Luar biasa! Predikat "Kepala Toko Kuat" didapatkan dari pencapaian poin target KPI yang prima selama 3 bulan berturut-turut.'
+            }
+        ];
+
+        // ==========================================
+        // 2. WEB AUDIO API - SOUND ENGINE (Lightweight & No Asset Dependencies)
+        // ==========================================
+        let audioCtx = null;
+        let bgmInterval = null;
+        let isMuted = false;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // SFX Correct
+        function playSoundCorrect() {
+            if (isMuted) return;
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+            osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.15); // E5
+            osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.3); // G5
+            
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        }
+
+        // SFX Wrong
+        function playSoundWrong() {
+            if (isMuted) return;
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(220.00, audioCtx.currentTime); // A3
+            osc.frequency.setValueAtTime(146.83, audioCtx.currentTime + 0.15); // D3
+            
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.4);
+        }
+
+        // Play procedural catchy loopable Gen Z BGM
+        function playBGM() {
+            if (isMuted) return;
+            initAudio();
+            
+            let noteTime = 0;
+            const synth = (freq, duration, type = 'sine') => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime + noteTime);
+                gain.gain.setValueAtTime(0.06, audioCtx.currentTime + noteTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + noteTime + duration - 0.05);
+                osc.start(audioCtx.currentTime + noteTime);
+                osc.stop(audioCtx.currentTime + noteTime + duration);
+            };
+
+            // Retro BGM Melody Sequence (Arpeggio style)
+            const melody = [261.63, 329.63, 392.00, 523.25, 349.23, 440.00, 523.25, 659.25];
+            melody.forEach((note, index) => {
+                synth(note, 0.4, 'triangle');
+                noteTime += 0.45;
+            });
+        }
+
+        function startBgmLoop() {
+            playBGM();
+            bgmInterval = setInterval(playBGM, 3600); // Repeat loop
+        }
+
+        function stopBgmLoop() {
+            clearInterval(bgmInterval);
+        }
+
+        // ==========================================
+        // 3. GAME STATE MANAGEMENT
+        // ==========================================
+        let playerData = {
+            name: '',
+            nik: ''
+        };
+
+        let answersState = Array(questions.length).fill(null); // Array to save user answers (A, B, C, D or null)
+        let activeArea = null; // 'kasir' | 'rak' | 'office'
+        let activeQuestionIndex = null; // Index inside questions array
+
+        // Elements
+        const stepLogin = document.getElementById('step-login');
+        const stepBriefing = document.getElementById('step-briefing');
+        const stepGameplay = document.getElementById('step-gameplay');
+        const stepDebrief = document.getElementById('step-debrief');
+
+        const formLogin = document.getElementById('form-login');
+        const usernameInput = document.getElementById('username');
+        const nikInput = document.getElementById('nik');
+        const playerDisplayName = document.getElementById('player-display-name');
+        const btnStartGame = document.getElementById('btn-start-game');
+
+        const hotspotKasir = document.getElementById('hotspot-kasir');
+        const hotspotRak = document.getElementById('hotspot-rak');
+        const hotspotOffice = document.getElementById('hotspot-office');
+
+        const statusKasir = document.getElementById('status-kasir');
+        const statusRak = document.getElementById('status-rak');
+        const statusOffice = document.getElementById('status-office');
+
+        const challengePlaceholder = document.getElementById('challenge-placeholder');
+        const challengeCard = document.getElementById('challenge-card');
+        const feedbackCard = document.getElementById('feedback-card');
+
+        const challengeAreaTag = document.getElementById('challenge-area-tag');
+        const challengeNumTag = document.getElementById('challenge-num-tag');
+        const challengeScenario = document.getElementById('challenge-scenario');
+        const challengeQuestion = document.getElementById('challenge-question');
+        const optionsContainer = document.getElementById('options-container');
+        const btnSubmitAnswer = document.getElementById('btn-submit-answer');
+
+        const feedbackIconContainer = document.getElementById('feedback-icon-container');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackText = document.getElementById('feedback-text');
+        const btnNextChallenge = document.getElementById('btn-next-challenge');
+
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const hudScore = document.getElementById('hud-score');
+        const topHud = document.getElementById('top-hud');
+
+        const badgeCrew = document.getElementById('badge-crew');
+        const badgeShift = document.getElementById('badge-shift');
+        const badgeMaster = document.getElementById('badge-master');
+
+        const resultName = document.getElementById('result-name');
+        const resultNik = document.getElementById('result-nik');
+        const scoreCircle = document.getElementById('score-circle');
+        const finalScoreText = document.getElementById('final-score-text');
+        const resultBadgeTitle = document.getElementById('result-badge-title');
+        const resultBadgeDesc = document.getElementById('result-badge-desc');
+        const btnRestartGame = document.getElementById('btn-restart-game');
+
+        const audioToggle = document.getElementById('audio-toggle');
+        const audioIcon = document.getElementById('audio-icon');
+
+        const memeImage = document.getElementById('meme-image');
+        const memeCaption = document.getElementById('meme-caption');
+
+        // ==========================================
+        // 4. EVENT LISTENERS
+        // ==========================================
+
+        // Login Submit
+        formLogin.addEventListener('submit', (e) => {
+            e.preventDefault();
+            playerData.name = usernameInput.value.trim().toUpperCase();
+            playerData.nik = nikInput.value.trim();
+
+            playerDisplayName.textContent = playerData.name;
+            
+            // Move to briefing
+            stepLogin.classList.add('hidden');
+            stepBriefing.classList.remove('hidden');
+            
+            // Initialize audio on first click
+            initAudio();
+        });
+
+        // Start Game
+        btnStartGame.addEventListener('click', () => {
+            stepBriefing.classList.add('hidden');
+            stepGameplay.classList.remove('hidden');
+            topHud.classList.remove('hidden');
+            
+            // Start BGM
+            startBgmLoop();
+            
+            // Render HUDs
+            updateHUD();
+        });
+
+        // Audio Mute/Unmute
+        audioToggle.addEventListener('click', () => {
+            isMuted = !isMuted;
+            if (isMuted) {
+                stopBgmLoop();
+                audioIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.39 6.61a1 1 0 00-1.415 1.415L12.586 10l-1.612 1.612a1 1 0 001.415 1.415L14 11.414l1.612 1.612a1 1 0 001.415-1.415L15.414 10l1.612-1.612a1 1 0 00-1.415-1.415L14 8.586l-1.612-1.612z" clip-rule="evenodd" />
+                    </svg>
+                `;
+            } else {
+                audioIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd" />
+                    </svg>
+                `;
+                startBgmLoop();
+            }
+        });
+
+        // Hotspot click handlers
+        hotspotKasir.addEventListener('click', () => loadArea('kasir'));
+        hotspotRak.addEventListener('click', () => loadArea('rak'));
+        hotspotOffice.addEventListener('click', () => loadArea('office'));
+
+        // ==========================================
+        // 5. CORE GAMEPLAY LOGIC
+        // ==========================================
+        
+        // Active challenge state
+        let currentSelectedOption = null;
+
+        function loadArea(areaName) {
+            activeArea = areaName;
+            
+            // Search for the first unanswered question in this area
+            const areaQuestions = questions.filter(q => q.area === areaName);
+            const unanswered = areaQuestions.find(q => {
+                const globalIndex = questions.indexOf(q);
+                return answersState[globalIndex] === null;
+            });
+
+            if (!unanswered) {
+                // If all answered in this area
+                challengePlaceholder.classList.remove('hidden');
+                challengeCard.classList.add('hidden');
+                feedbackCard.classList.add('hidden');
+                challengePlaceholder.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                            ✅
+                        </div>
+                        <h4 class="font-extrabold text-gray-800 text-lg">Area Selesai!</h4>
+                        <p class="text-xs text-gray-500 max-w-xs mx-auto mt-2 leading-relaxed">
+                            Hebat! Semua skenario kompetensi di area <strong>${areaName.toUpperCase()}</strong> telah selesai dijawab. Pilih area lain di peta!
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Load this unanswered question
+            activeQuestionIndex = questions.indexOf(unanswered);
+            displayQuestion(unanswered);
+        }
+
+        function displayQuestion(q) {
+            challengePlaceholder.classList.add('hidden');
+            feedbackCard.classList.add('hidden');
+            challengeCard.classList.remove('hidden');
+
+            // Find how many questions in this area are solved
+            const areaQuestions = questions.filter(aq => aq.area === q.area);
+            const totalInArea = areaQuestions.length;
+            const solvedInArea = areaQuestions.filter(aq => {
+                const idx = questions.indexOf(aq);
+                return answersState[idx] !== null;
+            }).length;
+
+            challengeAreaTag.textContent = q.area.toUpperCase();
+            challengeNumTag.textContent = `Progress Area: ${solvedInArea + 1} / ${totalInArea}`;
+            challengeScenario.textContent = `🎬 Skenario: "${q.scenario}"`;
+            challengeQuestion.textContent = q.question;
+
+            // Render Options
+            optionsContainer.innerHTML = '';
+            currentSelectedOption = null;
+
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = "w-full text-left p-3 border-2 border-gray-200 rounded-xl hover:bg-blue-50 hover:border-blue-400 transition flex items-center space-x-3 text-sm font-medium focus:outline-none";
+                btn.innerHTML = `
+                    <span class="w-7 h-7 bg-gray-100 border border-gray-300 rounded-full flex items-center justify-center font-bold text-xs shrink-0 select-none option-letter">${opt.key}</span>
+                    <span class="text-gray-700 leading-tight">${opt.text}</span>
+                `;
+                
+                btn.addEventListener('click', () => {
+                    // Deselect previous
+                    const allOpts = optionsContainer.querySelectorAll('button');
+                    allOpts.forEach(o => {
+                        o.classList.remove('border-blue-500', 'bg-blue-50');
+                        o.classList.add('border-gray-200');
+                        o.querySelector('.option-letter').classList.remove('bg-blue-500', 'text-white');
+                        o.querySelector('.option-letter').classList.add('bg-gray-100');
+                    });
+
+                    // Select this
+                    btn.classList.add('border-blue-500', 'bg-blue-50');
+                    btn.classList.remove('border-gray-200');
+                    btn.querySelector('.option-letter').classList.add('bg-blue-500', 'text-white');
+                    btn.querySelector('.option-letter').classList.remove('bg-gray-100');
+                    
+                    currentSelectedOption = opt.key;
+                });
+
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        // Submit Answer Clicked
+        btnSubmitAnswer.addEventListener('click', () => {
+            if (!currentSelectedOption) {
+                // Inline user warning, no alert()
+                const tip = document.createElement('p');
+                tip.id = "warning-tip";
+                tip.className = "text-red-500 text-xs mt-2 font-bold animate-pulse text-center";
+                tip.textContent = "Silakan pilih salah satu opsi jawaban terlebih dahulu!";
+                if (!document.getElementById('warning-tip')) {
+                    optionsContainer.parentNode.insertBefore(tip, optionsContainer.nextSibling);
+                    setTimeout(() => tip.remove(), 2500);
+                }
+                return;
+            }
+
+            const q = questions[activeQuestionIndex];
+            const isCorrect = (currentSelectedOption === q.correct);
+
+            // Play sound effects
+            if (isCorrect) {
+                playSoundCorrect();
+            } else {
+                playSoundWrong();
+            }
+
+            // Save state
+            answersState[activeQuestionIndex] = currentSelectedOption;
+
+            // Hide challenge, show feedback card
+            challengeCard.classList.add('hidden');
+            feedbackCard.classList.remove('hidden');
+
+            // Render Feedback Card
+            if (isCorrect) {
+                feedbackIconContainer.className = "w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl";
+                feedbackIconContainer.innerHTML = "🎉";
+                feedbackTitle.className = "font-extrabold text-xl mb-2 text-green-600";
+                feedbackTitle.textContent = "JAWABAN ANDA BENAR!";
+            } else {
+                feedbackIconContainer.className = "w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl";
+                feedbackIconContainer.innerHTML = "❌";
+                feedbackTitle.className = "font-extrabold text-xl mb-2 text-red-600";
+                feedbackTitle.textContent = `JAWABAN KURANG TEPAT! (Jawaban: ${q.correct})`;
+            }
+
+            feedbackText.innerHTML = `
+                <div class="text-left bg-gray-50 p-3 rounded-lg border border-gray-200 text-xs md:text-sm text-gray-700">
+                    <p class="font-extrabold mb-1">Materi Acuan Standardisasi:</p>
+                    <p class="leading-relaxed">${q.feedback}</p>
+                </div>
+            `;
+
+            // Update Progress HUD immediately
+            updateHUD();
+        });
+
+        // Click next on feedback card
+        btnNextChallenge.addEventListener('click', () => {
+            // Check if all questions are answered
+            const totalAnswered = answersState.filter(ans => ans !== null).length;
+            
+            if (totalAnswered >= questions.length) {
+                // Finished! Go to Debrief
+                stopBgmLoop();
+                endGame();
+            } else {
+                // Load again current area, it will auto skip to next unanswered
+                loadArea(activeArea);
+            }
+        });
+
+        // ==========================================
+        // 6. HUD & METRICS UPDATE
+        // ==========================================
+        function updateHUD() {
+            const answeredCount = answersState.filter(ans => ans !== null).length;
+            const percentage = Math.round((answeredCount / questions.length) * 100);
+
+            // Progress bar and text update
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `${percentage}% (${answeredCount}/10 Misi)`;
+
+            // Compute score (10 points each correct answer)
+            let score = 0;
+            answersState.forEach((ans, idx) => {
+                if (ans !== null && ans === questions[idx].correct) {
+                    score += 10;
+                }
+            });
+
+            hudScore.textContent = score;
+
+            // Area checkmarks / progress status labels
+            const getAreaProgressText = (area) => {
+                const areaQ = questions.filter(q => q.area === area);
+                const solved = areaQ.filter(aq => {
+                    const idx = questions.indexOf(aq);
+                    return answersState[idx] !== null;
+                }).length;
+                return `${area.toUpperCase()}: ${solved}/${areaQ.length}`;
+            };
+
+            statusKasir.textContent = getAreaProgressText('kasir');
+            statusRak.textContent = getAreaProgressText('rak');
+            statusOffice.textContent = getAreaProgressText('office');
+
+            // Style completed status tags
+            const updateStatusBg = (el, area) => {
+                const areaQ = questions.filter(q => q.area === area);
+                const solved = areaQ.filter(aq => {
+                    const idx = questions.indexOf(aq);
+                    return answersState[idx] !== null;
+                }).length;
+
+                if (solved === areaQ.length) {
+                    el.className = "p-2 rounded bg-green-100 text-green-800 border border-green-300 font-extrabold";
+                } else if (solved > 0) {
+                    el.className = "p-2 rounded bg-yellow-100 text-yellow-800 border border-yellow-300 font-bold animate-pulse";
+                } else {
+                    el.className = "p-2 rounded bg-gray-100 text-gray-500 border border-gray-200";
+                }
+            };
+
+            updateStatusBg(statusKasir, 'kasir');
+            updateStatusBg(statusRak, 'rak');
+            updateStatusBg(statusOffice, 'office');
+
+            // BADGE LOGIC
+            // Badge Crew (Min. 3 correct)
+            let totalCorrect = 0;
+            answersState.forEach((ans, idx) => {
+                if (ans === questions[idx].correct) totalCorrect++;
+            });
+
+            if (totalCorrect >= 3) {
+                badgeCrew.classList.remove('opacity-30', 'grayscale');
+                badgeCrew.classList.add('ring-2', 'ring-blue-500', 'font-black');
+            }
+            // Badge Shift (Min. 7 correct)
+            if (totalCorrect >= 7) {
+                badgeShift.classList.remove('opacity-30', 'grayscale');
+                badgeShift.classList.add('ring-2', 'ring-yellow-500', 'font-black');
+            }
+            // Badge Master (All correct)
+            if (totalCorrect === 10) {
+                badgeMaster.classList.remove('opacity-30', 'grayscale');
+                badgeMaster.classList.add('ring-2', 'ring-red-500', 'font-black');
+            }
+        }
+
+        // ==========================================
+        // 7. END GAME (DEBRIEF & SUMMARY RESULT)
+        // ==========================================
+        function endGame() {
+            stepGameplay.classList.add('hidden');
+            stepDebrief.classList.remove('hidden');
+
+            resultName.textContent = playerData.name;
+            resultNik.textContent = playerData.nik;
+
+            // Compute Final Score
+            let correctCount = 0;
+            answersState.forEach((ans, idx) => {
+                if (ans === questions[idx].correct) correctCount++;
+            });
+
+            const finalScore = correctCount * 10;
+            finalScoreText.textContent = finalScore;
+
+            // Set stroke animated offset for final dial svg
+            // 440 represents total stroke dash-array for 70 r circle
+            const offset = 440 - (440 * finalScore) / 100;
+            scoreCircle.setAttribute('stroke-dashoffset', offset);
+
+            // Coloring standard based on final score
+            if (finalScore >= 80) {
+                scoreCircle.setAttribute('stroke', '#10B981'); // Green
+            } else if (finalScore >= 60) {
+                scoreCircle.setAttribute('stroke', '#F59E0B'); // Yellow
+            } else {
+                scoreCircle.setAttribute('stroke', '#EF4444'); // Red
+            }
+
+            // --- Gen Z Meme Selector ---
+            if (finalScore >= 70) {
+                // "Menyala bosku" meme with cool cat wearing sunglasses
+                memeImage.src = "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=80";
+                memeCaption.textContent = "Menyala bosku 🔥😎";
+                memeCaption.className = "meme-text text-yellow-300 text-2xl md:text-3xl font-black tracking-wide uppercase";
+            } else {
+                // "Mending turu" meme with a deeply exhausted/sleeping cat
+                memeImage.src = "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?auto=format&fit=crop&w=600&q=80";
+                memeCaption.textContent = "Mending Turu 😴💤";
+                memeCaption.className = "meme-text text-red-500 text-2xl md:text-3xl font-black tracking-wide uppercase";
+            }
+
+            // Positive Reinforcement text based on score
+            if (finalScore === 100) {
+                resultBadgeTitle.textContent = "🏆 KEPALA TOKO KUAT (EXCELLENT MASTER)";
+                resultBadgeTitle.className = "text-xl font-extrabold text-green-700 mt-1";
+                resultBadgeDesc.innerHTML = `Sempurna! Anda berhasil memecahkan semua skenario dengan skor 100%! Standardisasi QSCV, kode batas penjualan rak, administrasi, dan sistem KPI dikuasai sepenuhnya. Anda adalah pimpinan teladan masa depan!`;
+            } else if (finalScore >= 80) {
+                resultBadgeTitle.textContent = "🔑 PIMPINAN SHIFT HANDAL (SUPERVISOR)";
+                resultBadgeTitle.className = "text-xl font-extrabold text-blue-800 mt-1";
+                resultBadgeDesc.innerHTML = `Hebat sekali! Anda menunjukkan pemahaman yang sangat kuat dengan nilai ${finalScore}%. Standardisasi operasional berjalan dengan aman di tangan Anda. Sedikit peningkatan lagi untuk mencapai predikat Kepala Toko Kuat yang legendaris!`;
+            } else if (finalScore >= 60) {
+                resultBadgeTitle.textContent = "🛒 CREW TOKO TELADAN";
+                resultBadgeTitle.className = "text-xl font-extrabold text-yellow-700 mt-1";
+                resultBadgeDesc.innerHTML = `Kerja bagus! Anda lulus uji dasar kompetensi dengan skor ${finalScore}%. Namun, pastikan kembali pemahaman Anda tentang kode rak penjualan (PT, RT, TG) dan kalkulasi SPD/STD/APC agar operasional toko lebih optimal.`;
+            } else {
+                resultBadgeTitle.textContent = "🧑‍💼 CREW MAGANG (BUTUH TRAINING INTENSIF)";
+                resultBadgeTitle.className = "text-xl font-extrabold text-red-600 mt-1";
+                resultBadgeDesc.innerHTML = `Tetap semangat! Skor Anda ${finalScore}%. Standar retail Indomaret sangatlah presisi demi kepuasan pelanggan. Silakan pelajari kembali detail QSCV, pembagian tugas pimpinan shift, serta kriteria "Kepala Toko Kuat" dan ulangi permainan!`;
+            }
+        }
+
+        // Restart Game Action
+        btnRestartGame.addEventListener('click', () => {
+            // Reset state variables
+            answersState = Array(questions.length).fill(null);
+            activeArea = null;
+            activeQuestionIndex = null;
+
+            // Reset UI badges opacity
+            badgeCrew.className = "opacity-30 grayscale inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-blue-100 text-blue-800";
+            badgeShift.className = "opacity-30 grayscale inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-yellow-100 text-yellow-800";
+            badgeMaster.className = "opacity-30 grayscale inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-red-100 text-red-800";
+
+            // Return to step login
+            stepDebrief.classList.add('hidden');
+            stepLogin.classList.remove('hidden');
+            topHud.classList.add('hidden');
+
+            usernameInput.value = '';
+            nikInput.value = '';
+        });
+    </script>
+</body>
+</html>
