@@ -7,7 +7,7 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Poppins & Impact for Meme -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Impact&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;600;700;800&family=Impact&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -61,7 +61,7 @@
             <!-- Audio Controller & Score HUD -->
             <div class="flex items-center space-x-3">
                 <button id="audio-toggle" class="bg-blue-800 hover:bg-blue-900 text-white p-2 rounded-full shadow transition focus:outline-none focus:ring-2 focus:ring-yellow-400 flex items-center justify-center" title="Mute/Unmute Musik">
-                    <!-- Volume Speaker Icon -->
+                    <!-- Volume Speaker Icon (SVG) -->
                     <svg id="audio-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd" />
                     </svg>
@@ -100,11 +100,15 @@
                     <input type="text" id="username" required class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Masukkan nama Anda">
                 </div>
                 <div>
-                    <label for="nik" class="block text-sm font-semibold text-gray-700 mb-1">Nomor Induk Karyawan (NIK)</label>
-                    <input type="text" id="nik" required class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Contoh: 202610045">
+                    <label for="nik" class="block text-sm font-semibold text-gray-700 mb-1">Nomor Induk Karyawan (NIK) <span class="text-xs text-red-500">(Wajib 10 digit angka)</span></label>
+                    <input type="text" id="nik" required class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Contoh: 1026401928" inputmode="numeric" maxlength="10" pattern="[0-9]{10}">
+                    <p id="nik-error" class="text-xs text-red-500 mt-1 hidden font-semibold">⚠️ NIK harus berisi tepat 10 digit angka saja!</p>
                 </div>
-                <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-950 font-bold py-3 px-6 rounded-xl shadow-md transition-transform transform hover:-translate-y-1 active:translate-y-0 text-center">
-                    MASUK KE BRIEFING &nbsp;➔
+                <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-950 font-bold py-3 px-6 rounded-xl shadow-md transition-transform transform hover:-translate-y-1 active:translate-y-0 text-center flex items-center justify-center space-x-2">
+                    <span>MASUK KE BRIEFING</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
                 </button>
             </form>
         </section>
@@ -113,11 +117,22 @@
         <section id="step-briefing" class="hidden bg-white rounded-2xl shadow-xl border-t-8 border-yellow-400 overflow-hidden my-4 p-6 md:p-8">
             <div class="max-w-2xl mx-auto">
                 <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Mission Objective</span>
-                <h2 class="text-2xl font-black text-gray-800 mt-2 mb-4">HALO, <span id="player-display-name" class="text-blue-600">CREW</span>! 🫡</h2>
+                <h2 class="text-2xl font-black text-gray-800 mt-2 mb-4 flex items-center space-x-2">
+                    <span>HALO, <span id="player-display-name" class="text-blue-600">CREW</span>!</span>
+                    <!-- Hand salute SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9z" clip-rule="evenodd" />
+                    </svg>
+                </h2>
                 
                 <!-- Story Hook (WHY) -->
                 <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-xl mb-6 text-sm text-gray-700 leading-relaxed">
-                    <p class="font-semibold text-blue-900 mb-1">🤔 Kenapa Anda di Sini?</p>
+                    <p class="font-semibold text-blue-900 mb-1 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Kenapa Anda di Sini?
+                    </p>
                     <p>
                         Sebuah toko retail modern hanya bisa sukses jika kru di dalamnya memahami standardisasi dengan sempurna. Pelanggan kecewa jika pelayanan tidak ceria, produk kedaluwarsa lolos ke rak, atau administrasi kasir kacau. Apakah Anda memiliki kemampuan untuk menyelesaikan masalah operasional harian dan menyandang gelar legendaris <strong>"Kepala Toko Kuat"</strong>?
                     </p>
@@ -127,25 +142,28 @@
                 <h3 class="font-bold text-gray-800 mb-2">📋 Peraturan & Petunjuk Permainan:</h3>
                 <ul class="space-y-3 text-sm text-gray-600 mb-6">
                     <li class="flex items-start">
-                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">1</span>
+                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 shrink-0">1</span>
                         <span>Anda akan melihat <strong>Denah Toko Indomaret</strong> dengan 3 area bersinar (Hotspots).</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">2</span>
+                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 shrink-0">2</span>
                         <span>Klik masing-masing hotspot untuk memecahkan total <strong>10 skenario tantangan</strong> di area tersebut.</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">3</span>
+                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 shrink-0">3</span>
                         <span>Setiap jawaban benar akan menyumbang persentase kemajuan dan poin evaluasi.</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5">4</span>
+                        <span class="bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-2 mt-0.5 shrink-0">4</span>
                         <span>Kumpulkan semua lencana (Badges) dan buktikan kompetensi terbaik Anda!</span>
                     </li>
                 </ul>
 
-                <button id="btn-start-game" class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold py-3 px-6 rounded-xl shadow-md transition-transform transform hover:-translate-y-1 active:translate-y-0 text-center uppercase tracking-wider">
-                    SAYA SIAP MEMULAI MISI! 🚀
+                <button id="btn-start-game" class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold py-3 px-6 rounded-xl shadow-md transition-transform transform hover:-translate-y-1 active:translate-y-0 text-center flex items-center justify-center space-x-2 uppercase tracking-wider">
+                    <span>SAYA SIAP MEMULAI MISI!</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
                 </button>
             </div>
         </section>
@@ -166,7 +184,7 @@
                         </div>
                     </div>
                     <!-- Badges Row -->
-                    <div class="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                    <div class="flex items-center space-x-2 bg-gray-50 p-2 rounded-lg border border-gray-100 shrink-0">
                         <span class="text-xs font-bold text-gray-500 mr-1">Lencana:</span>
                         <div class="flex space-x-1" id="badges-container">
                             <span id="badge-crew" class="opacity-30 grayscale inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-blue-100 text-blue-800" title="Selesaikan 3 soal (Crew Toko)">🛒 Crew</span>
@@ -222,29 +240,38 @@
                                 <text x="100" y="35" font-size="11" font-weight="extrabold" fill="#713f12" text-anchor="middle">LORONG RAK PRODUK</text>
                             </g>
                             
-                            <!-- Area 3: Ruang Back Office (Top Right) -->
+                            <!-- Area 3: Ruang Gudang (Top Right) -->
                             <g>
                                 <rect x="250" y="30" width="120" height="90" fill="#fee2e2" stroke="#ef4444" stroke-width="2" rx="5"/>
                                 <rect x="270" y="55" width="50" height="30" fill="#fca5a5" rx="3"/>
                                 <circle cx="340" cy="70" r="10" fill="#cbd5e1"/> <!-- Brankas -->
-                                <text x="310" y="24" font-size="11" font-weight="extrabold" fill="#7f1d1d" text-anchor="middle">RUANG BACK OFFICE</text>
+                                <text x="310" y="24" font-size="11" font-weight="extrabold" fill="#7f1d1d" text-anchor="middle">RUANG GUDANG</text>
                             </g>
                         </svg>
 
-                        <!-- HTML Pulsing Buttons placed over the SVG coordinate spots -->
-                        <!-- Hotspot 1: Kasir (x: 250-370, y: 180-240) -->
-                        <button id="hotspot-kasir" class="absolute bottom-[20%] right-[15%] w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center font-bold shadow-lg transform transition hover:scale-110 pulse-element" title="Masuk Area Kasir">
-                            🛒
+                        <!-- HTML Pulsing Buttons with custom SVG Icons inside (Perfect cross-device display) -->
+                        <!-- Hotspot 1: Kasir (Bottom Right) -->
+                        <button id="hotspot-kasir" class="absolute bottom-[20%] right-[15%] w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center font-bold shadow-lg transform transition hover:scale-110 pulse-element" title="Masuk Meja Kasir">
+                            <!-- SVG Shopping Cart -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
                         </button>
 
-                        <!-- Hotspot 2: Rak (x: 30-170, y: 50-230) -->
+                        <!-- Hotspot 2: Rak (Left side) -->
                         <button id="hotspot-rak" class="absolute top-[40%] left-[20%] w-10 h-10 bg-yellow-400 hover:bg-yellow-500 text-blue-900 rounded-full flex items-center justify-center font-bold shadow-lg transform transition hover:scale-110 pulse-element" title="Masuk Lorong Rak Produk">
-                            🏷️
+                            <!-- SVG Tag -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M6 20a1 1 0 02-1-1v-4.586a1 1 0 02.293-.707l10-10a1 1 0 021.414 0l4.586 4.586a1 1 0 020 1.414l-10 10a1 1 0 02-.707.293H6z" />
+                            </svg>
                         </button>
 
-                        <!-- Hotspot 3: Office (x: 250-370, y: 30-120) -->
-                        <button id="hotspot-office" class="absolute top-[20%] right-[15%] w-10 h-10 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center font-bold shadow-lg transform transition hover:scale-110 pulse-element" title="Masuk Ruang Back Office">
-                            🔑
+                        <!-- Hotspot 3: Gudang (Top Right) -->
+                        <button id="hotspot-office" class="absolute top-[20%] right-[15%] w-10 h-10 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center font-bold shadow-lg transform transition hover:scale-110 pulse-element" title="Masuk Ruang Gudang">
+                            <!-- SVG Key / Safe Lock -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m-2 4a2 2 0 012-2m-2 4a2 2 0 11-4 0m4 0a2 2 0 10-4 0m-5 1a3 3 0 116 0c0 1-1 2-3 2a2 2 0 00-2 2v2H4v-2a2 2 0 012-2z" />
+                            </svg>
                         </button>
                     </div>
 
@@ -257,7 +284,7 @@
                             Rak: 0/3
                         </div>
                         <div id="status-office" class="p-2 rounded bg-gray-100 text-gray-500 border border-gray-200">
-                            Office: 0/4
+                            Gudang: 0/4
                         </div>
                     </div>
                 </div>
@@ -265,8 +292,11 @@
                 <!-- Challenge Console Right Side -->
                 <div class="lg:col-span-5 bg-white p-5 rounded-2xl shadow border border-gray-200 min-h-[380px] flex flex-col justify-between">
                     <div id="challenge-placeholder" class="text-center py-12">
-                        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                            🗺️
+                        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <!-- Map SVG instead of emoji -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                            </svg>
                         </div>
                         <h4 class="font-extrabold text-gray-800 text-lg">Pilih Area di Denah</h4>
                         <p class="text-xs text-gray-500 max-w-xs mx-auto mt-2 leading-relaxed">
@@ -312,7 +342,7 @@
                     <div id="feedback-card" class="hidden flex flex-col justify-between h-full">
                         <div class="text-center py-6">
                             <div id="feedback-icon-container" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                                <!-- Icon Dynamic -->
+                                <!-- Icon SVG Dynamic -->
                             </div>
                             <h4 id="feedback-title" class="font-extrabold text-xl mb-2">Jawaban Benar!</h4>
                             <p id="feedback-text" class="text-sm text-gray-600 px-4 leading-relaxed">Penjelasan...</p>
@@ -481,11 +511,11 @@
                 feedback: 'Hebat! Kode TG adalah singkatan dari "Tukar Guling" dan kode B adalah representasi dari satuan waktu "Bulan" (H=Hari, M=Minggu, B=Bulan).'
             },
 
-            // AREA BACK OFFICE (Index 6, 7, 8, 9)
+            // AREA RUANG GUDANG (Index 6, 7, 8, 9)
             {
                 id: 7,
-                area: 'office',
-                scenario: 'Setiap pimpinan shift di Indomaret memiliki porsi tanggung jawab kerja yang berbeda antara administrasi dan fisik barang.',
+                area: 'gudang',
+                scenario: 'Setiap pimpinan shift di Indomaret memiliki porsi tanggung jawab kerja yang berbeda antara administrasi dan fisik barang di Ruang Gudang.',
                 question: 'Berapakah persentase pembagian tugas yang tepat untuk seorang SJL (Shift Job Leader)?',
                 options: [
                     { key: 'A', text: '50% administrasi, 50% mengurus barang' },
@@ -498,8 +528,8 @@
             },
             {
                 id: 8,
-                area: 'office',
-                scenario: 'Pimpinan shift ingin memonitor nominal penjualan toko harian dan rata-rata pembelian per konsumen.',
+                area: 'gudang',
+                scenario: 'Di Ruang Gudang, pimpinan shift ingin memonitor nominal penjualan toko harian dan rata-rata pembelian per konsumen.',
                 question: 'Apakah kepanjangan dari istilah performa SPD, STD, dan APC?',
                 options: [
                     { key: 'A', text: 'SPD = Sales Per Day; STD = Struk Per Day; APC = Average Purchase per Customer' },
@@ -512,8 +542,8 @@
             },
             {
                 id: 9,
-                area: 'office',
-                scenario: 'Sebagai pimpinan shift, Anda harus merapikan dokumen administrasi sesuai dengan periode pelaporannya.',
+                area: 'gudang',
+                scenario: 'Sebagai pimpinan shift yang mengontrol data di meja kerja Ruang Gudang, Anda harus merapikan dokumen administrasi sesuai dengan periode pelaporannya.',
                 question: 'Manakah di bawah ini yang termasuk dalam laporan administrasi HARIAN pimpinan shift?',
                 options: [
                     { key: 'A', text: 'Laporan PTW, laporan mingguan, dan returan barang' },
@@ -526,8 +556,8 @@
             },
             {
                 id: 10,
-                area: 'office',
-                scenario: 'Pimpinan toko yang berkinerja tinggi akan dinilai berdasarkan pencapaian Key Performance Indicators (KPI).',
+                area: 'gudang',
+                scenario: 'Evaluasi berkala di Ruang Gudang menyimpulkan bahwa pimpinan toko yang berkinerja tinggi akan dinilai berdasarkan pencapaian Key Performance Indicators (KPI).',
                 question: 'Apa kriteria yang harus dipenuhi agar seorang pimpinan dapat dinobatkan sebagai "Kepala Toko Kuat"?',
                 options: [
                     { key: 'A', text: 'Memiliki penjualan harian (SPD) tertinggi selama 1 bulan penuh.' },
@@ -642,7 +672,7 @@
         };
 
         let answersState = Array(questions.length).fill(null); // Array to save user answers (A, B, C, D or null)
-        let activeArea = null; // 'kasir' | 'rak' | 'office'
+        let activeArea = null; // 'kasir' | 'rak' | 'gudang'
         let activeQuestionIndex = null; // Index inside questions array
 
         // Elements
@@ -654,12 +684,13 @@
         const formLogin = document.getElementById('form-login');
         const usernameInput = document.getElementById('username');
         const nikInput = document.getElementById('nik');
+        const nikError = document.getElementById('nik-error');
         const playerDisplayName = document.getElementById('player-display-name');
         const btnStartGame = document.getElementById('btn-start-game');
 
         const hotspotKasir = document.getElementById('hotspot-kasir');
         const hotspotRak = document.getElementById('hotspot-rak');
-        const hotspotOffice = document.getElementById('hotspot-office');
+        const hotspotOffice = document.getElementById('hotspot-office'); // internal id stays identical to avoid mapping breaks, triggers 'gudang'
 
         const statusKasir = document.getElementById('status-kasir');
         const statusRak = document.getElementById('status-rak');
@@ -705,14 +736,42 @@
         const memeCaption = document.getElementById('meme-caption');
 
         // ==========================================
-        // 4. EVENT LISTENERS
+        // 4. VALIDASI NIK INPUT (Integer Only)
+        // ==========================================
+        nikInput.addEventListener('input', function() {
+            // Hapus semua karakter yang bukan angka
+            this.value = this.value.replace(/[^0-9]/g, '');
+            
+            // Sembunyikan error message jika pengguna sudah mengetik ulang
+            if (this.value.length === 10) {
+                nikError.classList.add('hidden');
+                nikInput.classList.remove('border-red-500', 'focus:ring-red-500');
+            }
+        });
+
+        // ==========================================
+        // 5. EVENT LISTENERS
         // ==========================================
 
         // Login Submit
         formLogin.addEventListener('submit', (e) => {
             e.preventDefault();
+            
+            const rawNik = nikInput.value.trim();
+            
+            // Validasi wajib tepat 10 digit angka
+            if (!/^\d{10}$/.test(rawNik)) {
+                nikError.classList.remove('hidden');
+                nikInput.classList.add('border-red-500', 'focus:ring-red-500');
+                nikInput.focus();
+                return;
+            }
+
+            nikError.classList.add('hidden');
+            nikInput.classList.remove('border-red-500', 'focus:ring-red-500');
+
             playerData.name = usernameInput.value.trim().toUpperCase();
-            playerData.nik = nikInput.value.trim();
+            playerData.nik = rawNik;
 
             playerDisplayName.textContent = playerData.name;
             
@@ -760,10 +819,10 @@
         // Hotspot click handlers
         hotspotKasir.addEventListener('click', () => loadArea('kasir'));
         hotspotRak.addEventListener('click', () => loadArea('rak'));
-        hotspotOffice.addEventListener('click', () => loadArea('office'));
+        hotspotOffice.addEventListener('click', () => loadArea('gudang')); // Maps office hotspot to 'gudang'
 
         // ==========================================
-        // 5. CORE GAMEPLAY LOGIC
+        // 6. CORE GAMEPLAY LOGIC
         // ==========================================
         
         // Active challenge state
@@ -784,14 +843,21 @@
                 challengePlaceholder.classList.remove('hidden');
                 challengeCard.classList.add('hidden');
                 feedbackCard.classList.add('hidden');
+                
+                let displayAreaTitle = areaName.toUpperCase();
+                if (areaName === 'gudang') displayAreaTitle = 'RUANG GUDANG';
+
                 challengePlaceholder.innerHTML = `
                     <div class="text-center py-12">
-                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
-                            ✅
+                        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <!-- SVG Checkmark (No broken emoji) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
                         </div>
                         <h4 class="font-extrabold text-gray-800 text-lg">Area Selesai!</h4>
                         <p class="text-xs text-gray-500 max-w-xs mx-auto mt-2 leading-relaxed">
-                            Hebat! Semua skenario kompetensi di area <strong>${areaName.toUpperCase()}</strong> telah selesai dijawab. Pilih area lain di peta!
+                            Hebat! Semua skenario kompetensi di area <strong>${displayAreaTitle}</strong> telah selesai dijawab. Pilih area lain di peta!
                         </p>
                     </div>
                 `;
@@ -816,7 +882,10 @@
                 return answersState[idx] !== null;
             }).length;
 
-            challengeAreaTag.textContent = q.area.toUpperCase();
+            let displayAreaLabel = q.area.toUpperCase();
+            if (q.area === 'gudang') displayAreaLabel = 'RUANG GUDANG';
+
+            challengeAreaTag.textContent = displayAreaLabel;
             challengeNumTag.textContent = `Progress Area: ${solvedInArea + 1} / ${totalInArea}`;
             challengeScenario.textContent = `🎬 Skenario: "${q.scenario}"`;
             challengeQuestion.textContent = q.question;
@@ -889,15 +958,23 @@
             challengeCard.classList.add('hidden');
             feedbackCard.classList.remove('hidden');
 
-            // Render Feedback Card
+            // Render Feedback Card (Replacing Emojis with beautiful SVGs)
             if (isCorrect) {
-                feedbackIconContainer.className = "w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl";
-                feedbackIconContainer.innerHTML = "🎉";
+                feedbackIconContainer.className = "w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4";
+                feedbackIconContainer.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                `;
                 feedbackTitle.className = "font-extrabold text-xl mb-2 text-green-600";
                 feedbackTitle.textContent = "JAWABAN ANDA BENAR!";
             } else {
-                feedbackIconContainer.className = "w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl";
-                feedbackIconContainer.innerHTML = "❌";
+                feedbackIconContainer.className = "w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4";
+                feedbackIconContainer.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                `;
                 feedbackTitle.className = "font-extrabold text-xl mb-2 text-red-600";
                 feedbackTitle.textContent = `JAWABAN KURANG TEPAT! (Jawaban: ${q.correct})`;
             }
@@ -929,7 +1006,7 @@
         });
 
         // ==========================================
-        // 6. HUD & METRICS UPDATE
+        // 7. HUD & METRICS UPDATE
         // ==========================================
         function updateHUD() {
             const answeredCount = answersState.filter(ans => ans !== null).length;
@@ -956,12 +1033,14 @@
                     const idx = questions.indexOf(aq);
                     return answersState[idx] !== null;
                 }).length;
-                return `${area.toUpperCase()}: ${solved}/${areaQ.length}`;
+                
+                let label = area === 'gudang' ? 'Gudang' : area.charAt(0).toUpperCase() + area.slice(1);
+                return `${label}: ${solved}/${areaQ.length}`;
             };
 
             statusKasir.textContent = getAreaProgressText('kasir');
             statusRak.textContent = getAreaProgressText('rak');
-            statusOffice.textContent = getAreaProgressText('office');
+            statusOffice.textContent = getAreaProgressText('gudang');
 
             // Style completed status tags
             const updateStatusBg = (el, area) => {
@@ -982,7 +1061,7 @@
 
             updateStatusBg(statusKasir, 'kasir');
             updateStatusBg(statusRak, 'rak');
-            updateStatusBg(statusOffice, 'office');
+            updateStatusBg(statusOffice, 'gudang');
 
             // BADGE LOGIC
             // Badge Crew (Min. 3 correct)
@@ -1008,7 +1087,7 @@
         }
 
         // ==========================================
-        // 7. END GAME (DEBRIEF & SUMMARY RESULT)
+        // 8. END GAME (DEBRIEF & SUMMARY RESULT)
         // ==========================================
         function endGame() {
             stepGameplay.classList.add('hidden');
